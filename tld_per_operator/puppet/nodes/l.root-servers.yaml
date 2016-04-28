@@ -1,0 +1,44 @@
+knot::manage_package_repo: true
+knot::manage_user: false
+knot::signing_policies:
+  default_rsa:
+    algorithm: RSASHA256
+    zsk-size: 1024
+    ksk-size: 1024
+knot::templates:
+  default:
+    dnssec-signing: on
+    storage: /var/lib/knot
+    kasp-db: /var/lib/knot/kasp
+    _signing_policy: default_rsa
+knot::zones:
+  a:
+    template: default
+  b:
+    template: default
+  c:
+    template: default
+  d:
+    template: default
+  e:
+    template: default
+  f:
+    template: default
+  g:
+    template: default
+  h:
+    template: default
+  i:
+    template: default
+  j:
+    template: default
+  k:
+    template: default
+  l:
+    template: default
+  m:
+    template: default
+  .:
+    template: default
+    file: /var/lib/knot/root.zone
+

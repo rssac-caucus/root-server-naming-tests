@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  config.vm.box = 'ubuntu/trusty64'
+  config.vm.host_name = 'l.root-servers.net'
+  config.vm.network "forwarded_port", guest: 53, host: 5353
+
+  config.vm.provision "shell", inline: "wget -q https://apt.puppetlabs.com/puppetlabs-release-trusty.deb"
+  config.vm.provision "shell", inline: "dpkg -i puppetlabs-release-trusty.deb"
+  config.vm.provision "shell", inline: "apt-get update"
+  config.vm.provision "shell", inline: "apt-get -y upgrade"
+  config.vm.provision "shell", inline: "apt-get install -y puppet"
+  config.vm.provision "shell", inline: "puppet module install --force puppetlabs-stdlib"
+  config.vm.provision "shell", inline: "puppet module install --force puppetlabs-apt"
+  config.vm.provision "shell", inline: "puppet module install --force tobru-knot"
+  config.vm.provision "shell", inline: "/vagrant/fetch_zone.sh . xfr.dns.icann.org"
+  config.vm.provision "shell", inline: "/vagrant/fetch_zone.sh root-servers.net xfr.dns.icann.org"
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = 'puppet'
+    puppet.manifest_file = 'init.pp'
+    puppet.hiera_config_path = "puppet/hiera.yaml"
+  end
+end
