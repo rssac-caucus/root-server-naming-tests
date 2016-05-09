@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
   config.vm.box = 'ubuntu/trusty64'
-  config.vm.host_name = 'l.root-servers.net'
+  config.vm.host_name = 'l51.root-servers.net'
   config.vm.network "forwarded_port", guest: 53, host: 5353
 
   config.vm.provision "shell", inline: "wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb"
