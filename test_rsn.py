@@ -71,6 +71,7 @@ def main():
         for line in f.read().splitlines():
             logging.debug('loading {}'.format(line))
             servers.append(RsnServer(line))
+    print_report(servers)
 
 if __name__ == '__main__':
     main()
