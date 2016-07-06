@@ -2,6 +2,7 @@
 
 import argparse
 import logging
+from prettytable import PrettyTable
 from dns.flags import DO
 from dns.resolver import query, Resolver
 
@@ -54,6 +55,13 @@ def set_log_level(args_level):
         log_level = logging.DEBUG
     logging.basicConfig(level=log_level)
 
+def print_report(servers):
+    table = PrettyTable(
+            ['Server', 'IPv4', 'IPv6', 'IPv4 DNSSEC', 'IPv6 DNSSEC'])
+    for server in servers:
+        table.add_row([server.server, server.size_ipv4, servers.size_ipv6,
+            server.size_ipv4_dnssec, server.size_ipv6_dnssec])
+    print table.get_string(sortby='Server')
 
 def main():
     args = get_args()
