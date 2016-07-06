@@ -13,6 +13,10 @@ class RsnServer(object):
         self.ipv4             = query(self.server, 'A')[0].address
         self.ipv6             = query(self.server, 'AAAA')[0].address
         self.resolver         = Resolver()
+        self.size_ipv4        = None
+        self.size_ipv6        = None
+        self.size_ipv4_dnssec = None
+        self.size_ipv6_dnssec = None
 
         self.logger.debug('initiate: {} ({}/{})'.format(self.server, self.ipv4, self.ipv6))
         self.update_sizes()
@@ -59,7 +63,7 @@ def print_report(servers):
     table = PrettyTable(
             ['Server', 'IPv4', 'IPv6', 'IPv4 DNSSEC', 'IPv6 DNSSEC'])
     for server in servers:
-        table.add_row([server.server, server.size_ipv4, servers.size_ipv6,
+        table.add_row([server.server, server.size_ipv4, server.size_ipv6,
             server.size_ipv4_dnssec, server.size_ipv6_dnssec])
     print table.get_string(sortby='Server')
 
