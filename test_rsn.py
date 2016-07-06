@@ -25,7 +25,7 @@ class RsnServer(object):
             self.resolver.use_edns(0,0,4096)
         answer = self.resolver.query('.', 'NS')
         size   = len(answer.response.to_wire())
-        self.logger.debug('Size:{}:{}'.format(self.server, size))
+        self.logger.debug('Size:{}:DNSSEC({}):{}'.format(server, dnssec, size))
         return size
 
     def update_sizes(self):
