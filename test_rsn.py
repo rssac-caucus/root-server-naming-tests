@@ -8,11 +8,12 @@ from dns.resolver import query, Resolver
 
 class RsnServer(object):
     def __init__(self, server):
-        self.logger           = logging.getLogger('RsnServer')
-        self.server           = server
-        self.ipv4             = query(self.server, 'A')[0].address
-        self.ipv6             = query(self.server, 'AAAA')[0].address
-        self.resolver         = Resolver()
+        self.logger      = logging.getLogger('RsnServer')
+        self.server      = server
+        self.ipv4        = query(self.server, 'A')[0].address
+        self.ipv6        = query(self.server, 'AAAA')[0].address
+        self.resolver    = Resolver()
+        self.round_trips = 0
 
         self.logger.debug('initiate: {} ({}/{})'.format(self.server, self.ipv4, self.ipv6))
         self.update_sizes()
