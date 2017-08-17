@@ -4,7 +4,7 @@ knot::remotes:
     address: 192.0.32.132
   iad.xfr.dns.icann.org:
     address: 192.0.47.132
-knot::signing_policies:
+knot::policies:
   default_rsa:
     algorithm: RSASHA256
     zsk-size: 1024
@@ -14,7 +14,7 @@ knot::templates:
     dnssec-signing: on
     storage: /var/lib/knot
     kasp-db: /var/lib/knot/kasp
-    _signing_policy: default_rsa
+    dnssec-policy: default_rsa
 knot::zones:
   root-servers.net:
     template: default

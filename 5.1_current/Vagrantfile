@@ -2,20 +2,19 @@ Vagrant.configure("2") do |config|
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
   config.vm.box = 'ubuntu/trusty64'
   config.vm.host_name = 'l51.root-servers.net'
-  #config.vm.network "forwarded_port", guest: 53, host: 5353
+  config.vm.network "forwarded_port", guest: 53, host: 5353, protocol: "tcp"
+  config.vm.network "forwarded_port", guest: 53, host: 5353, protocol: "udp" 
 
-  config.vm.provision "shell", inline: "wget -q https://apt.puppetlabs.com/puppetlabs-release-trusty.deb"
-  config.vm.provision "shell", inline: "dpkg -i puppetlabs-release-trusty.deb"
+  config.vm.provision "shell", inline: "wget https://apt.puppetlabs.com/puppet5-release-trusty.deb"
+  config.vm.provision "shell", inline: "dpkg -i puppet5-release-trusty.deb"
   config.vm.provision "shell", inline: "apt-get update"
   config.vm.provision "shell", inline: "apt-get -y upgrade"
-  config.vm.provision "shell", inline: "apt-get install -y puppet python-dnspython"
-  config.vm.provision "shell", inline: "puppet module install --force puppetlabs-stdlib"
-  config.vm.provision "shell", inline: "puppet module install --force puppetlabs-apt"
-  config.vm.provision "shell", inline: "puppet module install --force tobru-knot"
+  config.vm.provision "shell", inline: "apt-get install -y puppet-agent python-dnspython"
 
   config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = 'puppet'
-    puppet.manifest_file = 'init.pp'
+    puppet.environment = 'production'
+    puppet.environment_path = 'puppet/environments'
     puppet.hiera_config_path = "puppet/hiera.yaml"
+    puppet.module_path = "../modules"
   end
 end

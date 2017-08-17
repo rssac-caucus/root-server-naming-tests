@@ -1,0 +1,12 @@
+[submodule "modules/puppetlabs-stdlib"]
+	path = modules/puppetlabs-stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "modules/stdlib"]
+	path = modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "modules/apt"]
+	path = modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "modules/knot"]
+	path = modules/knot
+	url = https://github.com/tobru/puppet-knot

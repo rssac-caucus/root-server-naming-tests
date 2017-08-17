@@ -1,6 +1,6 @@
 knot::manage_package_repo: true
 knot::manage_user: false
-knot::signing_policies:
+knot::policies:
   default_rsa:
     algorithm: RSASHA256
     zsk-size: 1024
@@ -10,7 +10,7 @@ knot::templates:
     dnssec-signing: on
     storage: /var/lib/knot
     kasp-db: /var/lib/knot/kasp
-    _signing_policy: default_rsa
+    dnssec-policy: default_rsa
 knot::zones:
   root-servers:
     template: default
