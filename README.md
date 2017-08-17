@@ -1,5 +1,3 @@
-# rsn
-
 This project is a collection of vagrant boxes used to prototype the various modles discussed in [RSSAC028](https://www.icann.org/en/system/files/files/rssac-028-03aug17-en.pdf).  
 
 Before starting you will need to initialise the modules directory.  do this by running the following command in the root of the repository
@@ -12,9 +10,9 @@ Below is a list of dig commands used to validate various aspects of this config
 
 ```bash
 $ dig +tcp -p5351  +norec +dnssec ns . @127.0.0.1
-$ dig +tcp -p5351  +norec +dnssec ns root-servers.org. @127.0.0.1
+$ dig +tcp -p5351  +norec +dnssec ns root-servers.net. @127.0.0.1
 $ dig +tcp -p5352  +norec +dnssec ns . @127.0.0.1
-$ dig +tcp -p5352  +norec +dnssec ns root-servers.org. @127.0.0.1
+$ dig +tcp -p5352  +norec +dnssec ns root-servers.net. @127.0.0.1
 $ dig +tcp -p5353  +norec +dnssec ns . @127.0.0.1
 $ dig +tcp -p5354  +norec +dnssec ns . @127.0.0.1
 $ dig +tcp -p5354  +norec +dnssec ns root-servers. @127.0.0.1
