@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: "apt-get update"
   config.vm.provision "shell", inline: "apt-get -y upgrade"
   config.vm.provision "shell", inline: "apt-get install -y puppet-agent python-dnspython"
-  config.vm.provision "shell", inline: "/vagrant/fetch_zone.sh . xfr.dns.icann.org"
+  config.vm.provision "shell", inline: "/vagrant/fetch_zone.sh"
 
   config.vm.provision :puppet do |puppet|
     puppet.environment = 'production'

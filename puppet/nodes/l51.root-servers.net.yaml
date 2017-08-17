@@ -1,0 +1,22 @@
+knot::manage_user: false
+knot::manage_package_repo: true
+knot::remotes:
+  lax.xfr.dns.icann.org:
+    address: 192.0.32.132
+  iad.xfr.dns.icann.org:
+    address: 192.0.47.132
+knot::policies:
+  default_rsa:
+    algorithm: RSASHA256
+    zsk-size: 1024
+    ksk-size: 2048
+knot::zone_defaults:
+  master:
+  - lax.xfr.dns.icann.org
+  - iad.xfr.dns.icann.org
+  storage: /var/lib/knot
+  file: /var/lib/knot/zones/%s.zone
+knot::zones:
+  root-servers.net: {}
+  .: {}
+

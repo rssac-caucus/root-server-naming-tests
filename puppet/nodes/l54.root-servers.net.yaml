@@ -1,0 +1,21 @@
+update_ds: /vagrant/5.4/update_ds.sh
+knot::manage_package_repo: true
+knot::manage_user: false
+knot::policies:
+  default_rsa:
+    algorithm: RSASHA256
+    zsk-size: 1024
+    ksk-size: 1024
+knot::templates:
+  default:
+    dnssec-signing: on
+    storage: /var/lib/knot
+    kasp-db: /var/lib/knot/kasp
+    dnssec-policy: default_rsa
+knot::zones:
+  root-servers:
+    template: default
+  .:
+    template: default
+    file: /var/lib/knot/root.zone
+

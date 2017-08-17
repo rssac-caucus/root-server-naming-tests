@@ -1,3 +1,5 @@
+*.sw?
+.vagrant/
 *.gem
 *.rbc
 /.config
